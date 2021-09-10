@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 
-import { useUserStorage } from "../../services/storageAdapter";
+import { useCartStorage, useUserStorage } from "../../services/storageAdapter";
 import styles from "./Header.module.css";
 
 export function Header() {
   const { user } = useUserStorage();
+  const { cart } = useCartStorage();
 
   return (
     <header className={styles.header}>
@@ -15,7 +16,9 @@ export function Header() {
       {!user ? (
         <Link to="/auth">Log in</Link>
       ) : (
-        <Link to="/user">{user.name}</Link>
+        <Link to="/user">
+          {user.name} ({cart.products.length})
+        </Link>
       )}
     </header>
   );

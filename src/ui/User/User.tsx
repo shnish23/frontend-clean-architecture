@@ -1,6 +1,7 @@
 import { Redirect } from "react-router";
 
 import { useUserStorage } from "../../services/storageAdapter";
+import { Cart } from "../Cart";
 import { Profile } from "../Profile";
 
 export function User() {
@@ -10,6 +11,7 @@ export function User() {
   return (
     <main>
       <Profile />
+      <Cart />
     </main>
   );
 }
