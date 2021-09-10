@@ -1,4 +1,7 @@
+import { currentDatetime } from '../lib/datetime';
 import { Cart } from './cart';
+import { totalPrice } from './product';
+import { User } from './user';
 
 export type OrderStatus = "new" | "delivery" | "completed";
 export type Order = {
@@ -8,3 +11,13 @@ export type Order = {
   status: OrderStatus;
   total: PriceCents;
 };
+
+export function createOrder(user: User, cart: Cart): Order {
+  return {
+    cart,
+    user: user.id,
+    status: "new",
+    created: currentDatetime(),
+    total: totalPrice(cart.products),
+  };
+}
